@@ -36,7 +36,7 @@ def overlapping_search(triples):
 def process():
     corpus_type = ['NYT-star', 'WebNLG-star', 'NYT', 'WebNLG']
     for t in corpus_type:
-        with open(f'./{t}/test_triples.json', 'r', encoding='utf-8') as f:
+        with open(f'./data/{t}/test_triples.json', 'r', encoding='utf-8') as f:
             data = json.load(f)
 
         patterns = defaultdict(list)
@@ -46,7 +46,7 @@ def process():
                 patterns[pat].append(idx)
         print(f'Patterns of {t}:', {k: len(v) for k, v in patterns.items()})
         for typ in patterns.keys():
-            with open(f'./{t}/{typ}_triples.json', 'w', encoding='utf-8') as f:
+            with open(f'./data/{t}/{typ}_triples.json', 'w', encoding='utf-8') as f:
                 json.dump(pd.Series(data)[patterns[typ]].tolist(), f, indent=4, ensure_ascii=False)
 
         num_dict = defaultdict(list)
@@ -56,7 +56,7 @@ def process():
             else:
                 num_dict[len(d['triple_list'])].append(d)
         for key, values in num_dict.items():
-            with open(f'./{t}/{key}_triples.json', 'w', encoding='utf-8') as f:
+            with open(f'./data/{t}/{key}_triples.json', 'w', encoding='utf-8') as f:
                 json.dump(values, f, indent=4, ensure_ascii=False)
         print(f'Triples of {t}:', {k: len(v) for k, v in num_dict.items()})
 

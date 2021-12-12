@@ -25,6 +25,7 @@ parser.add_argument('--ex_index', type=str, default=1)
 parser.add_argument('--corpus_type', type=str, default="NYT", help="NYT, WebNLG, NYT*, WebNLG*")
 parser.add_argument('--device_id', type=int, default=0, help="GPU index")
 parser.add_argument('--restore_file', default='last', help="name of the file containing weights to reload")
+parser.add_argument('--mode', type=str)
 
 parser.add_argument('--corres_threshold', type=float, default=0.5, help="threshold of global correspondence")
 parser.add_argument('--rel_threshold', type=float, default=0.5, help="threshold of relation judgement")
@@ -137,10 +138,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
     params = utils.Params(ex_index=args.ex_index, corpus_type=args.corpus_type)
     ex_params = {
-        'corres_threshold': args.mat_threshold,
-        'rel_threshold': args.rel_pre_threshold,
-        'ensure_corres': args.ensure_match,
-        'ensure_rel': args.ensure_relpre,
+        'corres_threshold': args.corres_threshold,
+        'rel_threshold': args.rel_threshold,
+        'ensure_corres': args.ensure_corres,
+        'ensure_rel': args.ensure_rel,
         'emb_fusion': args.emb_fusion
     }
 
