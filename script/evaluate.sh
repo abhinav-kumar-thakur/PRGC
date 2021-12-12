@@ -2,7 +2,7 @@
 pypath=$(dirname $(dirname $(readlink -f $0)))
 python $pypath/evaluate.py \
 --ex_index=1 \
---device_id=3 \
+--device_id=0 \
 --mode=$1 \
 --corpus_type=WebNLG \
 --ensure_corres \
